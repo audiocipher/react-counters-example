@@ -14,31 +14,13 @@ class App extends Component {
     ]
   };
 
-  // constructor is called only once, when an instance of the class is created
-  // is used to initialize the state of the instance (based on props we may have received from a parent)
-  // if we aren't receiving any props from a parent, then we don't need to include them in the constructor
-  constructor(props) {
-    super(props); // call the constructor of the parent class
-    console.log("App --- Constructor", this.props);
-    // this.state = this.props.something; // we set the state directly (only in the constructor)
-  }
-
-  // this method is called after the component is rendered into the DOM
-  // the perfect place to make ajax calls to get data from the server
-  componentDidMount() {
-    console.log("App --- Mounted");
-    // do some ajax call
-
-    // this.setState({ data: someDataFromAjaxCall });
-  }
-
   handleIncrement = counter => {
     const newCounters = [...this.state.counters];
     const index = newCounters.indexOf(counter);
     newCounters[index] = { ...counter };
     newCounters[index].value++;
 
-    this.setState({ counters: newCounters }); // this will schedule a call to the render method
+    this.setState({ counters: newCounters });
   };
 
   handleReset = () => {
@@ -51,7 +33,7 @@ class App extends Component {
   };
 
   handleDelete = counterId => {
-    // console.log("Event handled called", counterId);
+    console.log("Event handled called", counterId);
 
     const newCounters = this.state.counters.filter(
       count => count.id !== counterId
@@ -61,8 +43,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("App --- Rendered (All children are rendered recursively)");
-
     return (
       <React.Fragment>
         <NavBar
